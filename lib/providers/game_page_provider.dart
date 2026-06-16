@@ -44,7 +44,22 @@ class GamePageProvider extends ChangeNotifier {
 
     _currentQuestionCount++;
 
-    print(isCorrect ? "Correct":"InCorrect");
+    showDialog(
+      context: context,
+      builder: (BuildContext _context) {
+        return AlertDialog(
+          backgroundColor: isCorrect ? Colors.green : Colors.red,
+          title: Icon(
+              isCorrect ? Icons.check_circle : Icons.cancel_sharp,
+            color: Colors.white,
+          ),
+        );
+      },
+    );
+
+    await Future.delayed(Duration(seconds: 1));
+
+    Navigator.pop(context);
 
     notifyListeners();
   }
