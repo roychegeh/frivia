@@ -23,7 +23,7 @@ class GamePage extends StatelessWidget {
     return Builder(
       builder: (_context) {
         _pageProvider = _context.watch<GamePageProvider>();
-        
+
         return Scaffold(
           body: SafeArea(
               child: Container(
