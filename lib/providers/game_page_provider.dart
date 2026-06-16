@@ -61,7 +61,38 @@ class GamePageProvider extends ChangeNotifier {
 
     Navigator.pop(context);
 
-    notifyListeners();
+    if(_currentQuestionCount == _maxQuestions) {
+      endGame();
+    } else {
+      notifyListeners();
+    }
+  }
+
+  Future<void> endGame() async {
+    showDialog(
+        context: context,
+        builder: (BuildContext _context){
+          return AlertDialog(
+            backgroundColor: Colors.blue,
+            title: Text(
+              "End Game!",
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 25
+              ),
+            ),
+            content: Text("Score: 0/0"),
+          );
+        },
+    );
+
+    await Future.delayed(
+      const Duration(seconds: 3),
+    );
+
+    Navigator.pop(context);
+    Navigator.pop(context);
+
   }
 
 }
