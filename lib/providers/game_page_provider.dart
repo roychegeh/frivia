@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 class GamePageProvider extends ChangeNotifier {
   final Dio _dio = Dio();
   final int _maxQuestions = 10;
+
   List?questions;
+  int _currentQuestionCount = 0;
 
   BuildContext context;
 
@@ -28,6 +30,12 @@ class GamePageProvider extends ChangeNotifier {
 
     var _data = jsonDecode(_response.toString(),);
     questions = _data['results'];
+
+    notifyListeners();
+  }
+
+  String getCurrentQuestionText() {
+    return questions![_currentQuestionCount]["question"];
   }
 
 }
